@@ -9,98 +9,1209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GrishaMega (MeQout) — Официальный сайт</title>
     <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrishaMega | Деконструкция Roblox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #f9f6f0;
+            --bg-secondary: #f3ede2;
+            --bg-tertiary: #ebe3d5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #888888;
+            --accent: #6b5b4f;
+            --accent-light: #8b7355;
+            --border: #d4c4b0;
+            --border-light: #e8dfd3;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #f0f6fc;
-            background-color: #0d1117;
-            margin: 0;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.9;
+            font-weight: 300;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: #161b22;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #30363d;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        ::selection { background: var(--accent); color: white; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(249,246,240,0.95) 0%, rgba(249,246,240,0) 100%);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
         }
-        h1 {
-            color: #58a6ff;
-            border-bottom: 2px solid #21262d;
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 28px;
+
+        nav.scrolled {
+            padding: 20px 40px;
+            background: rgba(249,246,240,0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
-        h2 {
-            color: #58a6ff;
-            font-size: 20px;
-            margin-top: 25px;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 5px;
-        }
-        p {
-            margin: 15px 0;
-            color: #c9d1d9;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-            color: #c9d1d9;
-        }
-        strong {
-            color: #f0f6fc;
-        }
-        .contacts {
-            background: #21262d;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border: 1px solid #30363d;
-        }
-        .contacts h3 {
-            margin-top: 0;
-            color: #ff7b72;
-        }
-        a {
-            color: #58a6ff;
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
             text-decoration: none;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, var(--bg-tertiary) 100%);
+        }
+
+        .hero-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-account {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(40px); }
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section { margin: 120px 0; }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .section-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 60px 0 25px 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 35px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding: 35px 50px;
+            margin: 60px 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        }
+
+        .image-full {
+            margin: 70px 0;
+        }
+
+        .image-full img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin: 60px 0;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .table-container {
+            margin: 50px 0;
+            overflow-x: auto;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 20px 25px;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        td {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border-light);
+            line-height: 1.7;
+        }
+
+        tr:hover { background-color: var(--bg-primary); }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 40px;
+            margin: 60px 0;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .highlight-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 60px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -54px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 120px 40px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .final-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 50px;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .image-grid { grid-template-columns: 1fr; }
+            .content { padding: 0 25px; }
+            nav { padding: 20px 25px; }
+            .nav-links { display: none; }
+            .profile-image { width: 220px; height: 220px; }
+            .final-quote { font-size: 1.5rem; }
+            .image-full img, .image-wrapper img { height: 280px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>GrishaMega (MeQout)</h1>
-    <p>Независимый исследователь игровых сюжетов и активный участник сообщества платформы Roblox. В рамках игровой деятельности и взаимодействия в тематических фан-сообществах использует два постоянных сетевых имени: основной никнейм <strong>GrishaMega</strong> и творческий псевдоним <strong>MeQout</strong> (также встречается написание MeQuot). Объединение этих профилей позволяет сформировать единую базу данных о его активности и интересах в игровой индустрии.</p>
+    <nav id="navbar">
+        <a href="#" class="nav-logo">GrishaMega</a>
+        <ul class="nav-links">
+            <li><a href="#manifest">Манифест</a></li>
+            <li><a href="#mathematics">Математика</a></li>
+            <li><a href="#narratives">Нарративы</a></li>
+            <li><a href="#methodology">Методология</a></li>
+        </ul>
+    </nav>
 
-    <h2>Направления деятельности и исследуемые проекты</h2>
-    <p>Геймерский кругозор GrishaMega охватывает несколько ключевых жанров платформы Roblox, включая мистические симуляторы, тактические стратегии и боевые PvP-арены:</p>
-    <ul>
-        <li><strong>Изучение мистического лора («Die of Death»):</strong> Основным вектором его интереса является анализ скрытых сюжетов и психологических хорроров. В частности, он детально изучает лор плейса «Die of Death». GrishaMega не выступает в роли разработчика данного проекта, а участвует в жизни комьюнити как аналитик: разбирает фанатские теории, хронологию обновлений и историю ключевых персонажей вселенной, таких как Devesto, Artful и Pursuer.</li>
-        <li><strong>Тактические и стратегические режимы:</strong> Для изучения игрового баланса и механик взаимодействия юнитов он регулярно использует Tower Defense проекты (ТДД), а также проходит сложные уровни в одиночной стратегии «The Battle Bricks».</li>
-        <li><strong>Динамичные боевые арены (PvP):</strong> В сферу его практического игрового опыта входят популярные файтинги с проработанной боевой системой. К ним относятся battlegrounds-проект «Jujutsu Shenanigans» (JJS) и масштабная ролевая игра «Blox Fruits» (BF), где он изучает комбинации атак и механику развития персонажей.</li>
-    </ul>
+    <section class="hero">
+        <p class="hero-label">Исследовательский манифест</p>
+        <h1>Деконструкция <em>Roblox</em></h1>
+        <p class="hero-subtitle">Экосистема скриптов, математики и скрытых нарративов</p>
+        <p class="hero-account">@GrishaMega</p>
+    </section>
 
-    <h2>Технические задачи и цели</h2>
-    <p>На текущем этапе GrishaMega (MeQout) ставит перед собой следующие задачи:</p>
-    <ul>
-        <li><strong>Освоение разработки:</strong> Изучение базового функционала редактора Roblox Studio и основ языка программирования Luau с целью последующего создания собственной тестовой хоррор-локации.</li>
-        <li><strong>Развитие комьюнити:</strong> Поиск единомышленников среди игроков JJS, BF, ТДД и Die of Death для совместного анализа скрытого контента, прохождения сложных режимов и обмена опытом.</li>
-    </ul>
+    <main class="content">
+        <section id="manifest" class="reveal">
+            <h2>За пределами поверхности</h2>
+            <p class="section-intro">Большинство видит в Roblox лишь платформу для развлечений. Но это поверхностное восприятие скрывает сложнейшую инженерную экосистему.</p>
+            
+            <p class="lead">Roblox — это не просто игровой движок. Это универсальная среда выполнения, построенная на Lua, с собственной физикой, системой рендеринга и сетевой синхронизацией.</p>
+            
+            <p>Когда вы запускаете игру, происходит не магия — происходит загрузка виртуальной машины, компиляция байт-кода, инициализация физического движка. Каждый кадр — это тысячи вычислений.</p>
 
-    <div class="contacts">
-        <h3>Официальные контакты</h3>
-        <p><strong>Игровой профиль Roblox:</strong> <a href="#" target="_blank">https://www.roblox.com/users/2664324189/profile?friendshipSourceType=PlayerSearch</a></p>
-        <p><strong>Оригинальный_ТикТок_аккаунт:@grishamega </strong>
-    </div>
-</div>
+            <div class="image-full reveal">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&h=700&fit=crop" alt="Code architecture">
+                <p class="image-caption">Архитектура виртуальных миров</p>
+            </div>
+        </section>
+
+        <section id="mathematics" class="reveal">
+            <h2>Математика как фундамент</h2>
+            <p class="section-intro">В основе любого взаимодействия в Roblox лежит математика. Векторная алгебра определяет движение, тригонометрия управляет углами.</p>
+            
+            <blockquote>
+                Истина не лежит на поверхности. Она погребена под слоями скриптов, скрыта в забытых диалогах NPC и зашифрована в механиках.
+            </blockquote>
+
+            <div class="image-grid reveal">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop" alt="Technology">
+                </div>
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop" alt="Cyberpunk">
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>Сравнение подходов</h2>
+            
+            <div class="table-container reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Слепая мета</th>
+                            <th>Деконструкция</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Цель</strong></td>
+                            <td>Достижение результата</td>
+                            <td>Понимание механизмов</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Метод</strong></td>
+                            <td>Копирование стратегий</td>
+                            <td>Анализ кода</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Глубина</strong></td>
+                            <td>Знание «как»</td>
+                            <td>Понимание «почему»</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Результат</strong></td>
+                            <td>Временное преимущество</td>
+                            <td>Фундаментальное мастерство</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="narratives" class="reveal">
+            <h2>Скрытые нарративы</h2>
+            <p class="section-intro">Каждая игра — это нарративная структура, часто более сложная, чем кажется.</p>
+            
+            <h3>Die of Death</h3>
+            <p>Анализ файлов игры показывает наличие удалённых локаций, неиспользованных персонажей и альтернативных концовок. Каждый элемент — часть истории, которую разработчики решили не рассказывать напрямую.</p>
+
+            <div class="highlight-box reveal">
+                <h4>Протокол #042</h4>
+                <p>Обнаружена пространственная аномалия. Координаты указывают на существование удалённого контента, стёртого из публичной версии.</p>
+            </div>
+
+            <h3>PvP как точная наука</h3>
+            <p>В JJS и Blox Fruits бой — это математика. Фрейм-дата, хитбоксы, серверный тикрейт — всё это можно измерить и использовать.</p>
+
+            <div class="image-full reveal">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1400&h=600&fit=crop" alt="Matrix">
+                <p class="image-caption">За визуальным эффектом — тысячи вычислений</p>
+            </div>
+        </section>
+
+        <section id="methodology" class="reveal">
+            <h2>Методология</h2>
+            
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 1</div>
+                    <div class="timeline-content">
+                        <h4>Сбор данных</h4>
+                        <p>Декомпиляция скриптов, анализ сетевых пакетов, изучение файлов игры.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 2</div>
+                    <div class="timeline-content">
+                        <h4>Структурирование</h4>
+                        <p>Создание базы знаний, связывание элементов в единую систему.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 3</div>
+                    <div class="timeline-content">
+                        <h4>Верификация</h4>
+                        <p>Экспериментальная проверка гипотез, измерение результатов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <blockquote>
+                Победа определяется не силой, а пониманием таймингов. Мастер видит бой за три секунды до его начала.
+            </blockquote>
+        </section>
+
+        <section class="reveal">
+            <h2>Заключение</h2>
+            <p class="lead">Roblox — это микрокосм, отражающий принципы реальной разработки.</p>
+            
+            <p>Деконструкция — это не разрушение. Это понимание. Способ видеть не конечный продукт, а процесс создания. Не магию, а математику.</p>
+            
+            <p>Когда другие видят просто игру, мы видим код. Не графику, а алгоритмы. Не развлечение, а инженерную систему, достойную изучения.</p>
+        </section>
+    </main>
+
+    <footer class="closing">
+        <div>
+            <!-- ВОТ СЮДА ВСТАВЬ ССЫЛКУ НА ФОТО НАОИ -->
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&h=600&fit=crop" alt="Naoya Zenin" class="profile-image">
+            <p class="final-quote">«Как жестоко, неужели ты и вправду не имеешь сердца?»</p>
+            <p class="signature">@GrishaMega / MeQout</p>
+        </div>
+    </footer>
+
+    <footer>
+        <p>© 2024 GrishaMega Research Initiative</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            }
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrishaMega | Деконструкция Roblox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #f9f6f0;
+            --bg-secondary: #f3ede2;
+            --bg-tertiary: #ebe3d5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #888888;
+            --accent: #6b5b4f;
+            --accent-light: #8b7355;
+            --border: #d4c4b0;
+            --border-light: #e8dfd3;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.9;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        ::selection { background: var(--accent); color: white; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(249,246,240,0.95) 0%, rgba(249,246,240,0) 100%);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 20px 40px;
+            background: rgba(249,246,240,0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, var(--bg-tertiary) 100%);
+        }
+
+        .hero-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-account {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(40px); }
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section { margin: 120px 0; }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .section-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 60px 0 25px 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 35px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding: 35px 50px;
+            margin: 60px 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        }
+
+        .image-full {
+            margin: 70px 0;
+        }
+
+        .image-full img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin: 60px 0;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .table-container {
+            margin: 50px 0;
+            overflow-x: auto;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 20px 25px;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        td {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border-light);
+            line-height: 1.7;
+        }
+
+        tr:hover { background-color: var(--bg-primary); }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 40px;
+            margin: 60px 0;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .highlight-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 60px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -54px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: 120px 40px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .final-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 50px;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .image-grid { grid-template-columns: 1fr; }
+            .content { padding: 0 25px; }
+            nav { padding: 20px 25px; }
+            .nav-links { display: none; }
+            .profile-image { width: 220px; height: 220px; }
+            .final-quote { font-size: 1.5rem; }
+            .image-full img, .image-wrapper img { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="nav-logo">GrishaMega</a>
+        <ul class="nav-links">
+            <li><a href="#manifest">Манифест</a></li>
+            <li><a href="#mathematics">Математика</a></li>
+            <li><a href="#narratives">Нарративы</a></li>
+            <li><a href="#methodology">Методология</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <p class="hero-label">Исследовательский манифест</p>
+        <h1>Деконструкция <em>Roblox</em></h1>
+        <p class="hero-subtitle">Экосистема скриптов, математики и скрытых нарративов</p>
+        <p class="hero-account">@GrishaMega</p>
+    </section>
+
+    <main class="content">
+        <section id="manifest" class="reveal">
+            <h2>За пределами поверхности</h2>
+            <p class="section-intro">Большинство видит в Roblox лишь платформу для развлечений. Но это поверхностное восприятие скрывает сложнейшую инженерную экосистему.</p>
+            
+            <p class="lead">Roblox — это не просто игровой движок. Это универсальная среда выполнения, построенная на Lua, с собственной физикой, системой рендеринга и сетевой синхронизацией.</p>
+            
+            <p>Когда вы запускаете игру, происходит не магия — происходит загрузка виртуальной машины, компиляция байт-кода, инициализация физического движка. Каждый кадр — это тысячи вычислений.</p>
+
+            <div class="image-full reveal">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&h=700&fit=crop" alt="Code architecture">
+                <p class="image-caption">Архитектура виртуальных миров</p>
+            </div>
+        </section>
+
+        <section id="mathematics" class="reveal">
+            <h2>Математика как фундамент</h2>
+            <p class="section-intro">В основе любого взаимодействия в Roblox лежит математика. Векторная алгебра определяет движение, тригонометрия управляет углами.</p>
+            
+            <blockquote>
+                Истина не лежит на поверхности. Она погребена под слоями скриптов, скрыта в забытых диалогах NPC и зашифрована в механиках.
+            </blockquote>
+
+            <div class="image-grid reveal">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop" alt="Technology">
+                </div>
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop" alt="Cyberpunk">
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>Сравнение подходов</h2>
+            
+            <div class="table-container reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Слепая мета</th>
+                            <th>Деконструкция</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Цель</strong></td>
+                            <td>Достижение результата</td>
+                            <td>Понимание механизмов</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Метод</strong></td>
+                            <td>Копирование стратегий</td>
+                            <td>Анализ кода</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Глубина</strong></td>
+                            <td>Знание «как»</td>
+                            <td>Понимание «почему»</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Результат</strong></td>
+                            <td>Временное преимущество</td>
+                            <td>Фундаментальное мастерство</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="narratives" class="reveal">
+            <h2>Скрытые нарративы</h2>
+            <p class="section-intro">Каждая игра — это нарративная структура, часто более сложная, чем кажется.</p>
+            
+            <h3>Die of Death</h3>
+            <p>Анализ файлов игры показывает наличие удалённых локаций, неиспользованных персонажей и альтернативных концовок. Каждый элемент — часть истории, которую разработчики решили не рассказывать напрямую.</p>
+
+            <div class="highlight-box reveal">
+                <h4>Протокол #042</h4>
+                <p>Обнаружена пространственная аномалия. Координаты указывают на существование удалённого контента, стёртого из публичной версии.</p>
+            </div>
+
+            <h3>PvP как точная наука</h3>
+            <p>В JJS и Blox Fruits бой — это математика. Фрейм-дата, хитбоксы, серверный тикрейт — всё это можно измерить и использовать.</p>
+
+            <div class="image-full reveal">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1400&h=600&fit=crop" alt="Matrix">
+                <p class="image-caption">За визуальным эффектом — тысячи вычислений</p>
+            </div>
+        </section>
+
+        <section id="methodology" class="reveal">
+            <h2>Методология</h2>
+            
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 1</div>
+                    <div class="timeline-content">
+                        <h4>Сбор данных</h4>
+                        <p>Декомпиляция скриптов, анализ сетевых пакетов, изучение файлов игры.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 2</div>
+                    <div class="timeline-content">
+                        <h4>Структурирование</h4>
+                        <p>Создание базы знаний, связывание элементов в единую систему.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Этап 3</div>
+                    <div class="timeline-content">
+                        <h4>Верификация</h4>
+                        <p>Экспериментальная проверка гипотез, измерение результатов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <blockquote>
+                Победа определяется не силой, а пониманием таймингов. Мастер видит бой за три секунды до его начала.
+            </blockquote>
+        </section>
+
+        <section class="reveal">
+            <h2>Заключение</h2>
+            <p class="lead">Roblox — это микрокосм, отражающий принципы реальной разработки.</p>
+            
+            <p>Деконструкция — это не разрушение. Это понимание. Способ видеть не конечный продукт, а процесс создания. Не магию, а математику.</p>
+            
+            <p>Когда другие видят просто игру, мы видим код. Не графику, а алгоритмы. Не развлечение, а инженерную систему, достойную изучения.</p>
+        </section>
+    </main>
+
+    <footer class="closing">
+        <div>
+            <!-- ВОТ СЮДА ВСТАВЬ ССЫЛКУ НА ФОТО НАОИ -->
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&h=600&fit=crop" alt="Naoya Zenin" class="profile-image">
+            <p class="final-quote">«Как жестоко, неужели ты и вправду не имеешь сердца?»</p>
+            <p class="signature">@GrishaMega / MeQout</p>
+        </div>
+    </footer>
+
+    <footer>
+        <p>© 2024 GrishaMega Research Initiative</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            }
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
 
 </body>
 </html>
